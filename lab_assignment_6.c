@@ -1,8 +1,39 @@
+/*
+Zak Rawles
+5341679
+2/23/24
+COP3502C-0040
+Lab Assignment 6
+
+
+*/
+
 #include <stdio.h>
+#include <stdlib.h>
 
 int search(int numbers[], int low, int high, int value) 
 {
-	return -1;
+	//base
+    if (low > high) {
+        return -1; //trigger else in line 84
+    }
+
+	//determine middle of the array
+    int middle = (high + low) / 2; 
+
+	//if middle is found matches perameter value
+    if (numbers[middle] == value) {
+
+        return middle;
+    } 
+	//middle is greater, check first half of array
+	else if (numbers[middle] > value) {
+        return search(numbers, low, middle - 1, value); 
+    } 
+	//middle is greater, check second half of array
+	else {
+        return search(numbers, middle + 1, high, value); 
+    }
 }
 
 void printArray(int numbers[], int sz)
